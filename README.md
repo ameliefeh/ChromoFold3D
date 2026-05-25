@@ -64,7 +64,7 @@ uv run python scripts/process.py
 
 On Mac/Linux:
 ```bash
-CUDA_VISIBLE_DEVICES=0 uv run --extra gpu python scripts/train.py --fold 0
+CUDA_VISIBLE_DEVICES=0 uv run --extra cpu python scripts/train.py --fold 0
 ```
 On Windows:
 ```powershell
@@ -76,7 +76,7 @@ $env:CUDA_VISIBLE_DEVICES=0; uv run --extra gpu python scripts/train.py --fold 0
 On Mac/Linux:
 ```bash
 for fold in 0 1 2 3 4; do
-  CUDA_VISIBLE_DEVICES=0 uv run --extra gpu python scripts/train.py \
+  CUDA_VISIBLE_DEVICES=0 uv run --extra cpu python scripts/train.py \
     --fold $fold --exp-name kfold5
 done
 ```

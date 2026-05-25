@@ -50,6 +50,10 @@ On Windows:
 .venv\Scripts\activate
 ```
 
+```bash
+pip install -e .
+```
+
 Your terminal prompt will show `(.venv)` once it is active. You need to do this once per terminal session before running any scripts.
 
 ## Run

@@ -46,10 +46,6 @@ On Mac/Linux:
 source .venv/bin/activate
 ```
 
-```bash
-uv pip install -e .
-```
-
 On Windows:
 ```powershell
 .venv\Scripts\activate
@@ -215,3 +211,16 @@ All hyperparameters are set via CLI flags in [`scripts/train.py`](scripts/train.
 | `--hidden` | `64` | Node embedding dimension `H` in both MPNNs and the sequence encoder |
 | `--steps` | `3` | Number of message-passing rounds in each MPNN |
 
+## Troubleshooting
+
+*⁠ uv : The term 'uv' is not recognized... ⁠* — ⁠ uv ⁠ is installed but not on your PATH. Add it for the current session:
+
+⁠ powershell
+$env:PATH = "$env:USERPROFILE\.local\bin;$env:PATH"
+ ⁠
+
+To fix it permanently, add the directory to your user PATH and restart your terminal:
+
+⁠ powershell
+[Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";$env:USERPROFILE\.local\bin", "User")
+ ⁠

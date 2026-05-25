@@ -40,15 +40,15 @@ lowest-`val_loss` weights; `trainer.test(ckpt_path="best")` runs the final test 
 
 ### `scripts/process.py`
 
-This script is responsible for building the final processed dataset that the model trains on. It reads raw input PDB files from the data/raw/ directory along with the labels.csv file, and converts them into graph-based training samples.
+This script is responsible for building the final processed dataset that the model trains on. It reads raw input PDB files from the `data/raw/` directory along with the labels.csv file, and converts them into graph-based training samples.
 
-Internally, it runs all preprocessing steps defined in the dataset pipeline (protein parsing, chromophore extraction create the ccd_cache folder in data/, feature construction, etc. See the C section below that explains the src/), and then packages everything into a single cached PyTorch Geometric dataset file: data/processed/data.pt.
+Internally, it runs all preprocessing steps defined in the dataset pipeline (protein parsing, chromophore extraction create the ccd_cache folder in data/, feature construction, etc. See the C section below that explains the src/), and then packages everything into a single cached PyTorch Geometric dataset file: `data/processed/data.pt`.
 
 This step only needs to be RUN ONCE, unless the raw data or labels are changed (for example if we want to add more proteins). Because the script has hardcoded paths (like DATA_ROOT = "data"), it does not require command-line arguments and is intended as a simple “build dataset” utility
 
 ### `scripts/train.py`
 
-This is the main training entry point for running a single fold of 5-fold cross-validation. Each execution of this script trains and evaluates the model on one specific split of the data. By default, it reproduces the exact experimental setup used in the reported results (the defaults reproduce the runs reported in this documentation in D section or also written in the README), but it is also flexible: you can choose which fold to run using the --fold argument (from 0 to 4), and you can group multiple runs under a shared experiment name using --exp-name, which organizes outputs under logs/exp_name/. (for us it is called kfold5)
+This is the main training entry point for running a single fold of 5-fold cross-validation. Each execution of this script trains and evaluates the model on one specific split of the data. By default, it reproduces the exact experimental setup used in the reported results (the defaults reproduce the runs reported in this documentation in D section or also written in the README), but it is also flexible: you can choose which fold to run using the `--fold` argument (from 0 to 4), and you can group multiple runs under a shared experiment name using `--exp-name`, which organizes outputs under `logs/exp_name/`. (for us it is called kfold5)
 
 The kfold5 is the exp-name we used for our data, which when you launched each fold with `train.py`, you create the `folds` folder in `logs/kfold5`. Each fold contains one run (version_0) that corresponds to our data for each fold. Rerunning the train.py script under the same exp-name will create other versions. By default, the recent versions in each fold is used to plot the aggregated data.
 
@@ -58,7 +58,7 @@ The hyperparameters that actually matter are also CLI flags so you can override 
 `--batch-size`, `--max-epochs`, `--patience`, `--hidden`, `--steps`, `--n-folds`, `--n-val`. Defaults are the values used in the report Adam, lr 1e-3, batch size 8, max 150 epochs (also written in our README). `EarlyStopping(patience=20)` on val_loss
 decides the actual length of the number of epochs for each fold; `ModelCheckpoint(monitor="val_loss")` picks the weights tested.
 
-During execution, the script creates both a CSV logger and a TensorBoard logger. Each fold is stored in its own directory under logs/[exp-name]/fold<F>/version_*. These directories contain training metrics, model checkpoints (specifically the best-performing model), and after testing, a file called test_predictions.csv, which stores per-protein predictions and ground truth values for later analysis.
+During execution, the script creates both a CSV logger and a TensorBoard logger. Each fold is stored in its own directory under `logs/[exp-name]/fold<F>/version_*`. These directories contain training metrics, model checkpoints (specifically the best-performing model), and after testing, a file called test_predictions.csv, which stores per-protein predictions and ground truth values for later analysis.
 
 ### `scripts/analyze_sweep.py`
 

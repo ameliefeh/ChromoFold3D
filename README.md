@@ -92,7 +92,7 @@ Then on both:
 uv run python scripts/analyze_sweep.py --exp-name kfold5
 ```
 
-N.B: **kfold5/ folder in logs/ folder are the folds we runned and from where we got our data. It constitutes an experiment of 5 different folds (fold folder inside kfold5/). You can run your own experiment by running --exp-name your_name with your own folds inside it. Keep in mind that analyze_sweep.py is plotting the results for the most recent version_/ inside each of your fold/ folder and aggregate them. In this repo, you have the version_0 from each of our fold that constitutes the results data.**
+**N.B: kfold5/ folder in logs/ folder are the folds we runned and from where we got our data. It constitutes an experiment of 5 different folds (fold folder inside kfold5/). You can run your own experiment by running --exp-name your_name with your own folds inside it. Keep in mind that analyze_sweep.py is plotting the results for the most recent version_/ inside each of your fold/ folder and aggregate them. In this repo, you have the version_0 from each of our fold that constitutes the results data.**
 
 **Step 4 — Live curves** in browser (open in a separate terminal):
 
@@ -180,7 +180,7 @@ ChromoFold 3D/
 - `data/ccd_cache/` (gitignored): cached CCD SMILES per chromophore code.
 - `data/processed/` (gitignored): cached PyG dataset after first run.
 
-N.B: **data/ccd_cache/ and data/processed/ are created by the script process.py. You can delete those and just keep the raw/*.pdb and labels.csv, as the cached data are created by running the process.py script ONCE. You do not need to run this script for every fold you will run with train.py, unless you change the dataset of proteins**
+**N.B: data/ccd_cache/ and data/processed/ are created by the script process.py. You can delete those and just keep the raw/*.pdb and labels.csv, as the cached data are created by running the process.py script ONCE. You do not need to run this script for every fold you will run with train.py, unless you change the dataset of proteins**
 
 ## Configuration 
 

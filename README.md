@@ -213,7 +213,15 @@ All hyperparameters are set via CLI flags in [`scripts/train.py`](scripts/train.
 
 ## Troubleshooting
 
-*⁠ uv : The term 'uv' is not recognized... ⁠* — ⁠ uv ⁠ is installed but not on your PATH. Add it for the current session:
+⁠ ModuleNotFoundError: No module named 'fp_gnn' ⁠ — ⁠ uv sync ⁠ creates the virtual environment but may not register the local package correctly. Fix it by running an explicit editable install after ⁠ uv sync ⁠:
+
+⁠ bash
+uv pip install -e .
+ ⁠
+
+Then re-activate the environment (⁠ source .venv/bin/activate ⁠) and retry.
+
+⁠ uv : The term 'uv' is not recognized... ⁠ — ⁠ uv ⁠ is installed but not on your PATH. Add it for the current session:
 
 ⁠ powershell
 $env:PATH = "$env:USERPROFILE\.local\bin;$env:PATH"
@@ -224,3 +232,4 @@ To fix it permanently, add the directory to your user PATH and restart your term
 ⁠ powershell
 [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";$env:USERPROFILE\.local\bin", "User")
  ⁠
+

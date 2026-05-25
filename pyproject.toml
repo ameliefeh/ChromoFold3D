@@ -48,5 +48,5 @@ url = "https://download.pytorch.org/whl/cu130"
 explicit = true
 
 [build-system]
-requires = ["uv_build>=0.10.9,<0.11.0"]
+requires = ["uv_build>=0.10.9"]
 build-backend = "uv_build"

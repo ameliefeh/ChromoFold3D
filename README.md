@@ -39,16 +39,17 @@ uv sync --extra cpu   # Mac, no NVIDIA GPU, or unsure → start here
 uv sync --extra gpu   # NVIDIA GPU with CUDA driver 580+ → faster training
 ```
 
-```bash
-uv pip install -e .
-```
-
 **Step 3 — Activate the virtual environment** that uv just created:
 
 On Mac/Linux:
 ```bash
 source .venv/bin/activate
 ```
+
+```bash
+uv pip install -e .
+```
+
 On Windows:
 ```powershell
 .venv\Scripts\activate
